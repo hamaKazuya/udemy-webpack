@@ -20,6 +20,15 @@ module.exports = {
           'style-loader', // styleをmoduleにしてimportできるようにする
           'css-loader' // cssの読み込みを行う
         ]
+      },
+      {
+        test: /\.(jpe?g|png|gif|svg|ico)$/i,
+        loader: 'url-loader',
+        // file-laoderを有効にさせるにはoptionを設定する必要がある
+        options: {
+          limit: 2048,
+          name: './images/[name].[ext]'
+        }
       }
     ]
   },
