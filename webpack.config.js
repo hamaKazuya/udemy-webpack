@@ -1,4 +1,6 @@
 const path = require('path')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+
 const outputPath = path.resolve(__dirname, 'dist')
 
 module.exports = {
@@ -10,6 +12,12 @@ module.exports = {
   // loaderの登録
   module: {
     rules: [
+      // 
+      {
+        test: /\.jsx?$/,
+        exclude: /node_modules/,
+        loader: "babel-loader"
+      },
       {
         // どういったファイルに適応するのかを指定
         test: /\.scss$/,
@@ -42,11 +50,21 @@ module.exports = {
           limit: 2048,
           name: './images/[name].[ext]'
         }
+      },
+      {
+        test: /\.html$/,
+        loader: 'html-loader'
       }
     ]
   },
   // rootの変更
   devServer: {
     contentBase: outputPath
-  }
+  },
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: './src/index.html',
+      filename: './index.html' // 出力するファイル
+    })
+  ]
 }
