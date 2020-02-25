@@ -19,7 +19,7 @@ module.exports = {
           // 後ろから順に実行されるので逆に記述する
           'style-loader', // styleをmoduleにしてimportできるようにする
           'css-loader', // cssの読み込みを行う
-          // node-sass ?
+          // node-sass は勝手にやってくれてんのかな
           'sass-loader' // sassの読み込みを行う
         ]
       },
