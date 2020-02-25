@@ -1,6 +1,7 @@
 import _ from 'lodash'
 import { Nijou, NAME } from './utilities'
 import './style.css'
+import './style.scss'
 import logo from './logo.png'
 
 console.log(Nijou(2))
