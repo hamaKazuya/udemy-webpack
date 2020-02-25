@@ -12,6 +12,19 @@ module.exports = {
     rules: [
       {
         // どういったファイルに適応するのかを指定
+        test: /\.scss$/,
+        // どのローダーを適用するか
+        // cssファイルをjsとしてモジュールに化けさせる
+        use: [
+          // 後ろから順に実行されるので逆に記述する
+          'style-loader', // styleをmoduleにしてimportできるようにする
+          'css-loader', // cssの読み込みを行う
+          // node-sass ?
+          'sass-loader' // sassの読み込みを行う
+        ]
+      },
+      {
+        // どういったファイルに適応するのかを指定
         test: /\.css$/,
         // どのローダーを適用するか
         // cssファイルをjsとしてモジュールに化けさせる
