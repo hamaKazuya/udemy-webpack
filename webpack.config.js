@@ -1,6 +1,8 @@
 const path = require('path')
 const outputPath = path.resolve(__dirname, 'dist')
 
+console.log(1)
+
 module.exports = {
   entry: './src/index.js',
   output: {
