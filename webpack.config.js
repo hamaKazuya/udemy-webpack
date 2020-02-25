@@ -1,12 +1,14 @@
 const path = require('path')
 const outputPath = path.resolve(__dirname, 'dist')
 
-console.log(1)
-
 module.exports = {
   entry: './src/index.js',
   output: {
     filename: 'main.js',
     path: outputPath
+  },
+  // rootの変更
+  devServer: {
+    contentBase: outputPath
   }
 }
