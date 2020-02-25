@@ -1,5 +1,6 @@
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 const outputPath = path.resolve(__dirname, 'dist')
 
@@ -20,28 +21,30 @@ module.exports = {
       },
       {
         // どういったファイルに適応するのかを指定
-        test: /\.scss$/,
+        test: /\.(sc|c)ss$/,
         // どのローダーを適用するか
         // cssファイルをjsとしてモジュールに化けさせる
         use: [
           // 後ろから順に実行されるので逆に記述する
-          'style-loader', // styleをmoduleにしてimportできるようにする
+          // 'style-loader', // styleをmoduleにしてimportできるようにする
+          MiniCssExtractPlugin.loader,
           'css-loader', // cssの読み込みを行う
           // node-sass は勝手にやってくれてんのかな
           'sass-loader' // sassの読み込みを行う
         ]
       },
-      {
-        // どういったファイルに適応するのかを指定
-        test: /\.css$/,
-        // どのローダーを適用するか
-        // cssファイルをjsとしてモジュールに化けさせる
-        use: [
-          // 後ろから順に実行されるので逆に記述する
-          'style-loader', // styleをmoduleにしてimportできるようにする
-          'css-loader' // cssの読み込みを行う
-        ]
-      },
+      // {
+      //   // どういったファイルに適応するのかを指定
+      //   test: /\.css$/,
+      //   // どのローダーを適用するか
+      //   // cssファイルをjsとしてモジュールに化けさせる
+      //   use: [
+      //     // 後ろから順に実行されるので逆に記述する
+      //     MiniCssExtractPlugin.loader,
+      //     // 'style-loader', // styleをmoduleにしてimportできるようにする
+      //     'css-loader' // cssの読み込みを行う
+      //   ]
+      // },
       {
         test: /\.(jpe?g|png|gif|svg|ico)$/i,
         loader: 'url-loader',
@@ -65,6 +68,10 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: './src/index.html',
       filename: './index.html' // 出力するファイル
+    }),
+    new MiniCssExtractPlugin({
+      filename: '[name].[hash].css',
+
     })
   ]
 }
